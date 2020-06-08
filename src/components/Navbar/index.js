@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as LogoSvg } from "../../assets/svg/logo.svg";
 import { Styled } from "./style";
 import { Container } from "@material-ui/core";
@@ -9,7 +9,9 @@ const Navbar = () => {
     <Container>
       <Styled.Navbar>
         <div className="logo">
-          <LogoSvg />
+          <Link to="/">
+            <LogoSvg />
+          </Link>
         </div>
         <div className="menu">
           <ul>

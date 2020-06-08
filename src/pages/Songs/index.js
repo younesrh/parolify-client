@@ -1,14 +1,13 @@
 import React from "react";
 import { Typography, Container } from "@material-ui/core";
 import { Styled } from "./style";
+import SongsList from "../../components/SongsList";
 
 const Songs = () => {
   return (
     <Container>
       <Styled.Songs className="page">
-        <Typography variant="h4" className="hero-title">
-          Songs
-        </Typography>
+        <SongsList />
       </Styled.Songs>
     </Container>
   );
