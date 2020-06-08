@@ -32,16 +32,16 @@ const Navbar = styled.nav`
             left: 0;
             right: 0;
             bottom: -8px;
-            background: red transparent;
+            background: transparent;
             margin: 0 auto;
           }
           &:hover {
-            color: ${({ theme }) => theme.palette.primary.main};
+            color: ${({ theme }) => theme.palette.secondary.main};
           }
           &.active {
-            color: ${({ theme }) => theme.palette.primary.main};
+            color: ${({ theme }) => theme.palette.secondary.main};
             &:before {
-              background: ${({ theme }) => theme.palette.primary.main};
+              background: ${({ theme }) => theme.palette.secondary.main};
             }
           }
         }

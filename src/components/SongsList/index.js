@@ -1,12 +1,11 @@
 import React from "react";
 import { Typography, Container } from "@material-ui/core";
 import { Styled } from "./style";
-import { ReactComponent as IllustrationSvg } from "../../assets/svg/home-illustration.svg";
 
-const Home = () => {
+const SongsList = () => {
   return (
     <Container>
-      <Styled.Home className="page">
+      <Styled.SongsList className="page">
         <Typography variant="h4" className="hero-title">
           Welcome to <span className="text-highlight">Parolify</span>, the best
           lyrics app out there.
@@ -15,9 +14,9 @@ const Home = () => {
         <div className="illustration">
           <IllustrationSvg />
         </div>
-      </Styled.Home>
+      </Styled.SongsList>
     </Container>
   );
 };
 
-export default Home;
+export default SongsList;

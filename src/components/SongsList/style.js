@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const SearchField = styled.div``;
+const SongsList = styled.div``;
 
 export const Styled = {
-  SearchField,
+  SongsList,
 };

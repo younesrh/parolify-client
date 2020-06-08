@@ -28,11 +28,28 @@ const GlobalStyle = createGlobalStyle`
     background-color: white;
     overflow-y: scroll !important;
     cursor: default;
+    font-family: "Open Sans", "Garamond", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   }
 
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  .text-highlight{
+    color: ${({ theme }) => theme.palette.secondary.main};
+    text-decoration: underline;
+  }
+
+  span {
+    font-family: inherit;
+  }
+  .page{
+    min-height:70vh;
   }
 
 `;

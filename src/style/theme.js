@@ -5,6 +5,9 @@ let themeObject = createMuiTheme({
     primary: {
       main: "#C8003A",
     },
+    secondary: {
+      main: "#870085",
+    },
   },
   overrides: {
     // Style sheet name ⚛️
@@ -16,7 +19,7 @@ let themeObject = createMuiTheme({
     },
   },
   typography: {
-    fontSize: 15,
+    fontSize: 16,
     fontFamily: [
       '"Open Sans"',
       '"Garamond"',
