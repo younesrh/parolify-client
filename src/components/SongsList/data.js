@@ -645,7 +645,7 @@ const songsData = [
     coverImage: shawnCoverImage,
     songName: " Shawn Mendes - Treat You Better",
     ratingsNumber: 2086,
-    rating: 4.8,
+    rating: 2.8,
     lyrics: `I won't lie to you
     I know he's just not right for you
     And you can tell me if I'm off

@@ -1,11 +1,59 @@
 import styled from "styled-components";
 
 const Navbar = styled.nav`
-  padding: 16px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  margin: 0 auto;
+  /* background: white; */
+  z-index: 900000;
+
+  &.--moving {
+    background: white;
+    .arrow-button {
+      svg {
+        width: 36px;
+        height: 36px;
+        fill: black !important;
+      }
+    }
+  }
+
+  .navbar-inner {
+    padding: 16px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    &.--detailed {
+      .logo {
+        display: flex;
+        border-radius: 100px;
+        border: 2px solid white;
+        background: white;
+        overflow: hidden;
+      }
+      .menu {
+        ul {
+          li {
+            .arrow-button {
+              svg {
+                width: 36px;
+                height: 36px;
+                fill: white;
+              }
+            }
+            a {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .logo {
     display: flex;
   }

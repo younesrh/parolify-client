@@ -30,8 +30,7 @@ const SongItem = styled.div`
       justify-content: space-between;
       margin-bottom: 8px;
       h6 {
-        /* font-size: px;
-         */
+        padding-inline-end: 8px;
         line-height: 1.2;
       }
     }

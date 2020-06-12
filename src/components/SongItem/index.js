@@ -3,6 +3,7 @@ import { Styled } from "./style";
 import { ReactComponent as ArrowRightIcon } from "../../assets/icons/arrow-right.svg";
 import { IconButton, Typography } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
+import { Link } from "react-router-dom";
 
 const SongItem = ({
   id,
@@ -25,9 +26,11 @@ const SongItem = ({
             <Typography variant="h6">{songName}</Typography>
           </div>
           <div className="button">
-            <IconButton>
-              <ArrowRightIcon />
-            </IconButton>
+            <Link to={`/songs/${id}`}>
+              <IconButton>
+                <ArrowRightIcon />
+              </IconButton>
+            </Link>
           </div>
         </div>
         <div className="rating">

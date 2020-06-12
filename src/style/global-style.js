@@ -49,7 +49,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: inherit;
   }
   .page{
-    min-height:70vh;
+    padding-top: 128px;
+    min-height: 100vh;
+    position: relative;
   }
 
 `;
