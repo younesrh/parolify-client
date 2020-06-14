@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./App.css";
 
-import { Route, useLocation } from "react-router-dom";
+import { Route, useLocation, Redirect, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Songs from "./pages/Songs";
 import Navbar from "./components/Navbar";
@@ -22,9 +22,12 @@ function App() {
     <ThemeProvider theme={themeObject}>
       <div className="app">
         <Navbar />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/songs-list" component={Songs} />
-        <Route exact path="/songs/:id" component={SongDetailed} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/songs-list" component={Songs} />
+          <Route exact path="/songs/:id" component={SongDetailed} />
+          <Redirect to="/" />
+        </Switch>
         <Footer />
       </div>
     </ThemeProvider>

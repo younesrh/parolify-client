@@ -3,6 +3,7 @@ import styled from "styled-components";
 const SongItem = styled.div`
   width: 100%;
   max-width: 400px;
+  max-height: 620px;
   border-radius: 16px;
   display: flex;
   flex-direction: column;

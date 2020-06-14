@@ -1,3 +1,4 @@
+// Images
 import adeleCoverImage from "../../assets/images/covers/1.jpg";
 import alanCoverImage from "../../assets/images/covers/2.jpg";
 import camilaCoverImage from "../../assets/images/covers/3.png";
@@ -8,11 +9,15 @@ import kendjiCoverImage from "../../assets/images/covers/7.jpg";
 import lpCoverImage from "../../assets/images/covers/8.jpg";
 import shawnCoverImage from "../../assets/images/covers/9.jpg";
 
+// Videos
+import adeleVideo from "../../assets/videos/Adele - Hello.mp4";
+
 const songsData = [
   {
     id: "4fe73de7-6cc7-48d9-bcb7-c881b824ae2d",
     artistName: "Adele",
     coverImage: adeleCoverImage,
+    videoUrl: adeleVideo,
     songName: "Adele - Hello",
     ratingsNumber: 2086,
     rating: 4.8,
@@ -219,10 +224,10 @@ const songsData = [
     Havana, ooh na-na`,
   },
   {
-    id: "dbaf4fee-29b5-477b-b207-4a9eebe40450 ",
+    id: "dbaf4fee-29b5-477b-b207-4a9eebe40450",
     artistName: "Ed Sheeran",
     coverImage: edsherenCoverImage,
-    songName: " Ed Sheeran - Shape of You",
+    songName: "Ed Sheeran - Shape of You",
     ratingsNumber: 2086,
     rating: 4.8,
     lyrics: `The club isn't the best place to find a lover

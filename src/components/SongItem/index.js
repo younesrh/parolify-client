@@ -9,12 +9,12 @@ const SongItem = ({
   id,
   artistName,
   coverImage,
+  videoUrl,
   songName,
   ratingsNumber,
   rating,
   lyrics,
 }) => {
-  // const [stars, setStars] = useState(rating);
   return (
     <Styled.SongItem>
       <div className="image">
