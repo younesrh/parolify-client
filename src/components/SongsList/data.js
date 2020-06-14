@@ -219,10 +219,10 @@ const songsData = [
     Havana, ooh na-na`,
   },
   {
-    id: "dbaf4fee-29b5-477b-b207-4a9eebe40450 ",
+    id: "dbaf4fee-29b5-477b-b207-4a9eebe40450",
     artistName: "Ed Sheeran",
     coverImage: edsherenCoverImage,
-    songName: " Ed Sheeran - Shape of You",
+    songName: "Ed Sheeran - Shape of You",
     ratingsNumber: 2086,
     rating: 4.8,
     lyrics: `The club isn't the best place to find a lover

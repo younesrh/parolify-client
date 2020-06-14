@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Typography, Container } from "@material-ui/core";
 import { Styled } from "./style";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import songs from "../../components/SongsList/data";
 import Rating from "@material-ui/lab/Rating";
+import { useEffect } from "react";
 
 const SongDetailed = () => {
   const { id } = useParams();
   const selectedSong = songs.find((song) => song.id === id);
-
-  console.log(selectedSong);
 
   const [stars, setStars] = useState(selectedSong.rating);
 
