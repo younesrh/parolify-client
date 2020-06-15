@@ -11,6 +11,14 @@ import shawnCoverImage from "../../assets/images/covers/9.jpg";
 
 // Videos
 import adeleVideo from "../../assets/videos/Adele - Hello.mp4";
+import alanVideo from "../../assets/videos/Alan Walker - Faded.mp4";
+import camilaVideo from "../../assets/videos/Camila Cabello - Havana.mp4";
+import edsherenVideo from "../../assets/videos/Ed Sheeran - Shape of You.mp4";
+import gnashVideo from "../../assets/videos/gnash - i hate u, i love u.mp4";
+import imaginVideo from "../../assets/videos/Imagine Dragons - Believer.mp4";
+import kendjiVideo from "../../assets/videos/Kendji Girac - Sonrisa.mp4";
+import lpVideo from "../../assets/videos/LP - Lost On You.mp4";
+import shawnVideo from "../../assets/videos/Shawn Mendes - Treat You Better.mp4";
 
 const songsData = [
   {
@@ -85,6 +93,7 @@ const songsData = [
     id: "eafc8eee-1aa1-49d8-8e88-d6c88b97a7c5",
     artistName: "Alan Walker",
     coverImage: alanCoverImage,
+    videoUrl: alanVideo,
     songName: "Alan Walker - Faded",
     ratingsNumber: 5412,
     rating: 4.9,
@@ -148,6 +157,7 @@ const songsData = [
     id: "c1e21358-a91a-4af9-be98-fe989d98fc47",
     artistName: "Camila Cabello",
     coverImage: camilaCoverImage,
+    videoUrl: camilaVideo,
     songName: " Camila Cabello - Havana",
     ratingsNumber: 2086,
     rating: 4.8,
@@ -227,6 +237,7 @@ const songsData = [
     id: "dbaf4fee-29b5-477b-b207-4a9eebe40450",
     artistName: "Ed Sheeran",
     coverImage: edsherenCoverImage,
+    videoUrl: edsherenVideo,
     songName: "Ed Sheeran - Shape of You",
     ratingsNumber: 2086,
     rating: 4.8,
@@ -326,6 +337,7 @@ const songsData = [
     id: "4e675fe2-640d-4723-9469-67104cc74e3b",
     artistName: "Gnash",
     coverImage: gnashCoverImage,
+    videoUrl: gnashVideo,
     songName: " Gnash - I Hate U, I Love U",
     ratingsNumber: 2086,
     rating: 4.8,
@@ -416,6 +428,7 @@ const songsData = [
     id: "041ec203-d1b9-4f2f-9e7b-0823f99455bd",
     artistName: "Imagine Dragons",
     coverImage: imaginCoverImage,
+    videoUrl: imaginVideo,
     songName: " Imagine Dragons - Believer",
     ratingsNumber: 2086,
     rating: 4.8,
@@ -495,6 +508,7 @@ const songsData = [
     id: "7e77e2f3-7151-4494-8d17-3e3e5d18eed9",
     artistName: "Kendji Girac",
     coverImage: kendjiCoverImage,
+    videoUrl: kendjiVideo,
     songName: " Kendji Girac - Sonrisa",
     ratingsNumber: 2086,
     rating: 4.8,
@@ -582,6 +596,7 @@ const songsData = [
     id: "0f3462a9-d4b6-40d2-8b08-46acbf559ae6",
     artistName: "LP",
     coverImage: lpCoverImage,
+    videoUrl: lpVideo,
     songName: " LP - Lost on You",
     ratingsNumber: 2086,
     rating: 4.8,
@@ -648,6 +663,7 @@ const songsData = [
     id: "4b935fbe-f1fe-4215-a76b-147dd0fec03d",
     artistName: "Shawn Mendes",
     coverImage: shawnCoverImage,
+    videoUrl: shawnVideo,
     songName: " Shawn Mendes - Treat You Better",
     ratingsNumber: 2086,
     rating: 2.8,
