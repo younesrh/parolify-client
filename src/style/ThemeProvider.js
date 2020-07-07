@@ -8,7 +8,6 @@ import { ThemeProvider as SCThemeProvider } from "styled-components";
 import GlobalStyle from "./global-style";
 
 const ThemeProvider = ({ theme, children }) => {
-  console.log(theme);
   return (
     <StylesProvider injectFirst>
       <MUIThemeProvider theme={theme}>

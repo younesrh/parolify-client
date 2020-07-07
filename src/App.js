@@ -1,7 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import "./App.css";
 
-import { Route, useLocation, Redirect, Switch } from "react-router-dom";
+import {
+  Route,
+  useLocation,
+  Redirect,
+  Switch,
+  useHistory,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Songs from "./pages/Songs";
 import Navbar from "./components/Navbar";
@@ -12,15 +18,30 @@ import SongDetailed from "./pages/SongDetailed";
 import { ProtectedRoute } from "./routes";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-
-const apiUrl = "http://localhost:3001";
+import { AuthProvider, AuthContext } from "./context/auth-context";
+import axios from "axios";
 
 function App() {
   const location = useLocation();
+  const { token, setCurrentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (token) {
+      console.log(token);
+      axios
+        .get("http://localhost:3001/api/auth", {
+          headers: {
+            "auth-token": token,
+          },
+        })
+        .then((res) => {
+          setCurrentUser(res.data);
+        });
+    }
+  }, [token]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    console.log(location);
   }, [location.pathname]);
 
   return (
@@ -28,11 +49,11 @@ function App() {
       <div className="app">
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Home} />
-          <ProtectedRoute exact path="/login" component={Login} />
-          <ProtectedRoute exact path="/register" component={Register} />
-          <Route exact path="/songs-list" component={Songs} />
-          <Route exact path="/songs/:id" component={SongDetailed} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <ProtectedRoute exact path="/songs-list" component={Songs} />
+          <ProtectedRoute exact path="/songs/:id" component={SongDetailed} />
           <Redirect to="/" />
         </Switch>
         <Footer />

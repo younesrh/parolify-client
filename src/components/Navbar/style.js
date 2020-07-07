@@ -45,8 +45,10 @@ const Navbar = styled.nav`
                 fill: white;
               }
             }
-            a {
+            a,
+            span {
               color: white;
+              cursor: pointer;
             }
           }
         }

@@ -1,14 +1,16 @@
-import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, NavLink, useLocation, useHistory } from "react-router-dom";
 import { ReactComponent as LogoSvg } from "../../assets/svg/logo.svg";
 import { Styled } from "./style";
-import { Container, IconButton } from "@material-ui/core";
+import { Container, IconButton, Button } from "@material-ui/core";
 import { useEffect } from "react";
 import { useState } from "react";
 import useScroll from "react-use-scroll";
 import { ReactComponent as ArrowLeft } from "../../assets/icons/bx-left-arrow-alt.svg";
+import { AuthContext } from "../../context/auth-context";
 
 const Navbar = () => {
+  const { token, currentUser, setCurrentUser } = useContext(AuthContext);
   const location = useLocation();
 
   const [isDetailedSong, setDetailedSong] = useState(false);
@@ -32,6 +34,20 @@ const Navbar = () => {
     }
   }, [location]);
 
+  const history = useHistory();
+
+  useEffect(() => {
+    if (token) {
+      history.push("/");
+    }
+  }, [token]);
+
+  const logOut = () => {
+    setCurrentUser(null);
+    history.push("/login");
+    localStorage.removeItem("auth-token");
+  };
+
   return (
     <Styled.Navbar className={`${isMoving ? "--moving" : null}`}>
       <Container
@@ -43,6 +59,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="menu">
+          {currentUser && `Logged in as ${currentUser.name}`}
           <ul>
             {isDetailedSong ? (
               <li>
@@ -54,16 +71,36 @@ const Navbar = () => {
               </li>
             ) : (
               <>
-                <li>
-                  <NavLink exact to="/">
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink exact to="/songs-list">
-                    Song list
-                  </NavLink>
-                </li>
+                {currentUser ? (
+                  <>
+                    <li>
+                      <NavLink exact to="/">
+                        Home
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink exact to="/songs-list">
+                        Song list
+                      </NavLink>
+                    </li>
+                    <li>
+                      <a onClick={logOut}>Log out</a>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <NavLink exact to="/login">
+                        Login
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink exact to="/register">
+                        Register
+                      </NavLink>
+                    </li>
+                  </>
+                )}
               </>
             )}
           </ul>
