@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { Typography, Container } from "@material-ui/core";
 import { Styled } from "./style";
 import { useParams, useHistory } from "react-router-dom";
-import songs from "../../components/SongsList/data";
 import Rating from "@material-ui/lab/Rating";
 import { useEffect } from "react";
 import { Player } from "video-react";
 import "video-react/dist/video-react.css"; // import css
+import { useContext } from "react";
+import { DataContext } from "../../context/data-context";
 
 const SongDetailed = () => {
   const { id } = useParams();
+  const { songs } = useContext(DataContext);
   const selectedSong = songs.find((song) => song.id === id);
 
   const [stars, setStars] = useState(selectedSong.rating);
@@ -35,7 +37,7 @@ const SongDetailed = () => {
               size="large"
             />
           </div>
-          <Typography variant="h3">{selectedSong.songName}</Typography>
+          <Typography variant="h3">{`${selectedSong.artistName} - ${selectedSong.songName}`}</Typography>
           <div className="video">
             <Player>
               <source src={selectedSong.videoUrl} />

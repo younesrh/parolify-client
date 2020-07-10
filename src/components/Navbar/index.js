@@ -57,9 +57,9 @@ const Navbar = () => {
           <Link to="/">
             <LogoSvg />
           </Link>
+          <span>{currentUser && `Hello ${currentUser.name}`}</span>
         </div>
         <div className="menu">
-          {currentUser && `Logged in as ${currentUser.name}`}
           <ul>
             {isDetailedSong ? (
               <li>
@@ -81,6 +81,11 @@ const Navbar = () => {
                     <li>
                       <NavLink exact to="/songs-list">
                         Song list
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink exact to="/songs-list/add">
+                        <Button variant="contained">Add a song</Button>
                       </NavLink>
                     </li>
                     <li>

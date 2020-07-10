@@ -33,6 +33,7 @@ const Navbar = styled.nav`
         border-radius: 100px;
         border: 2px solid white;
         background: white;
+        padding-inline-end: 1rem;
         overflow: hidden;
       }
       .menu {
@@ -58,6 +59,12 @@ const Navbar = styled.nav`
 
   .logo {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: red; */
+    span {
+      margin-inline-start: 16px;
+    }
   }
   .menu {
     display: flex;

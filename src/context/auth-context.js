@@ -21,14 +21,6 @@ export const AuthProvider = ({ children }) => {
     }
   }, [token]);
 
-  useEffect(() => {
-    console.log(token);
-  }, [token]);
-
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
-
   return (
     <AuthContext.Provider
       value={{

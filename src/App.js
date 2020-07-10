@@ -20,6 +20,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { AuthProvider, AuthContext } from "./context/auth-context";
 import axios from "axios";
+import SongAdder from "./pages/SongAdder";
 
 function App() {
   const location = useLocation();
@@ -27,7 +28,6 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      console.log(token);
       axios
         .get("http://localhost:3001/api/auth", {
           headers: {
@@ -53,6 +53,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <ProtectedRoute exact path="/songs-list" component={Songs} />
+          <ProtectedRoute exact path="/songs-list/add" component={SongAdder} />
           <ProtectedRoute exact path="/songs/:id" component={SongDetailed} />
           <Redirect to="/" />
         </Switch>

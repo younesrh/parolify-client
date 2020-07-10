@@ -23,7 +23,7 @@ const SongItem = ({
       <div className="info">
         <div className="header">
           <div className="song-name">
-            <Typography variant="h6">{songName}</Typography>
+            <Typography variant="h6">{`${artistName} - ${songName}`}</Typography>
           </div>
           <div className="button">
             <Link to={`/songs/${id}`}>
@@ -39,7 +39,7 @@ const SongItem = ({
               name="simple-controlled"
               value={rating}
               precision={0.1}
-              disabled
+              // disabled
               // onChange={(event, newValue) => {
               //   setStars(newValue);
               // }}

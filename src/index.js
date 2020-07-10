@@ -5,12 +5,15 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./context/auth-context";
+import { DataProvider } from "./context/data-context";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-        <App />
+        <DataProvider>
+          <App />
+        </DataProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>,

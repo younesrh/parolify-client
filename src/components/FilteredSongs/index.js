@@ -2,17 +2,19 @@ import React, { useEffect } from "react";
 import { Container, Typography } from "@material-ui/core";
 import { Styled } from "./style";
 import SongItem from "../SongItem";
-import songsData from "../SongsList/data";
 import { useState } from "react";
+import { useContext } from "react";
+import { DataContext } from "../../context/data-context";
 
 const FilteredSongs = ({ search }) => {
+  const { songs } = useContext(DataContext);
   const [filteredSongs, setFilteredSongs] = useState([]);
 
   useEffect(() => {
     setFilteredSongs(
-      songsData.filter(
+      songs.filter(
         (song) =>
-          song.songName
+          `${song.artistName} - ${song.songName}`
             .toLowerCase()
             .trim()
             .includes(search.toLowerCase().trim()) ||
