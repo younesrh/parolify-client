@@ -2,7 +2,6 @@
   "name": "parolify-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:3001",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/lab": "^4.0.0-alpha.55",
