@@ -163,6 +163,7 @@ const SongAdder = () => {
                   onBlur={handleBlur}
                   label="Song name"
                   error={touched.song_name && errors.song_name ? true : false}
+                  variant="filled"
                 />
                 {touched.song_name && errors.song_name ? (
                   <ErrorMessage name="song_name" />
@@ -179,6 +180,7 @@ const SongAdder = () => {
                   error={
                     touched.artist_name && errors.artist_name ? true : false
                   }
+                  variant="filled"
                 />
                 {touched.artist_name && errors.artist_name ? (
                   <ErrorMessage name="artist_name" />
@@ -193,6 +195,9 @@ const SongAdder = () => {
                   onBlur={handleBlur}
                   label="Lyrics"
                   error={touched.lyrics && errors.lyrics ? true : false}
+                  variant="filled"
+                  multiline
+                  rows={6}
                 />
                 {touched.lyrics && errors.lyrics ? (
                   <ErrorMessage name="lyrics" />
@@ -211,10 +216,9 @@ const SongAdder = () => {
                 />
                 <label htmlFor="contained-button-cover">
                   <Button
-                    variant="contained"
                     color="primary"
                     component="span"
-                    startIcon={<CoverIconSvg style={{ fill: "white" }} />}
+                    startIcon={<CoverIconSvg />}
                   >
                     Choose cover image
                   </Button>
@@ -233,10 +237,9 @@ const SongAdder = () => {
                 />
                 <label htmlFor="contained-button-video">
                   <Button
-                    variant="contained"
                     color="primary"
                     component="span"
-                    startIcon={<VideoIconSvg style={{ fill: "white" }} />}
+                    startIcon={<VideoIconSvg />}
                   >
                     Choose video
                   </Button>

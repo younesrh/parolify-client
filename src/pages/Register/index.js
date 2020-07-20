@@ -75,6 +75,7 @@ const Register = () => {
                   autoComplete="email"
                   label="Email"
                   error={touched.email && errors.email ? true : false}
+                  variant="filled"
                 />
                 {touched.email && errors.email ? (
                   <ErrorMessage name="email" />
@@ -89,6 +90,7 @@ const Register = () => {
                   autoComplete="name"
                   label="Name"
                   error={touched.name && errors.name ? true : false}
+                  variant="filled"
                 />
                 {touched.name && errors.name ? (
                   <ErrorMessage name="name" />
@@ -103,6 +105,7 @@ const Register = () => {
                   autoComplete="current-password"
                   label="Password"
                   error={touched.password && errors.password ? true : false}
+                  variant="filled"
                 />
                 {touched.password && errors.password ? (
                   <ErrorMessage name="password" />

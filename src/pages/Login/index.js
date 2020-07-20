@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import {
   Typography,
   Container,
@@ -7,46 +7,46 @@ import {
   Button,
   CircularProgress,
   Checkbox,
-} from '@material-ui/core';
-import { Styled } from './style';
-import { Formik, ErrorMessage } from 'formik';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
-import { AuthContext } from '../../context/auth-context';
+} from "@material-ui/core";
+import { Styled } from "./style";
+import { Formik, ErrorMessage } from "formik";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/auth-context";
 
 const Login = () => {
   const history = useHistory();
   const { token, setToken, currentUser } = useContext(AuthContext);
 
   if (token && currentUser) {
-    history.push('/');
+    history.push("/");
   }
 
   return (
     <Container>
-      <Styled.Login className='page'>
-        <Typography variant='h4' className='hero-title'>
+      <Styled.Login className="page">
+        <Typography variant="h4" className="hero-title">
           Login
         </Typography>
-        <div className='form'>
+        <div className="form">
           <Formik
             // validationSchema={vSchema}
             validateOnMount={true}
             initialValues={{
-              email: '',
-              password: '',
+              email: "",
+              password: "",
               remember: false,
             }}
             onSubmit={(values, { setSubmitting, setFieldError }) => {
               setSubmitting(true);
 
               axios
-                .post('http://localhost:3001/api/auth/login', {
+                .post("http://localhost:3001/api/auth/login", {
                   email: values.email,
                   password: values.password,
                 })
                 .then((res) => {
-                  localStorage.setItem('auth-token', JSON.stringify(res.data));
+                  localStorage.setItem("auth-token", JSON.stringify(res.data));
                   setToken(res.data);
                   setSubmitting(false);
                   // history.push("/");
@@ -69,59 +69,61 @@ const Login = () => {
             }) => (
               <form onSubmit={handleSubmit} noValidate>
                 <TextField
-                  type='email'
-                  name='email'
+                  type="email"
+                  name="email"
                   value={values.email}
-                  placeholder='Email'
+                  placeholder="Email"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  autoComplete='email'
-                  label='Email'
+                  autoComplete="email"
+                  label="Email"
                   error={touched.email && errors.email ? true : false}
+                  variant="filled"
                 />
                 {touched.email && errors.email ? (
-                  <ErrorMessage name='email' />
+                  <ErrorMessage name="email" />
                 ) : null}
                 <TextField
-                  type='password'
-                  name='password'
+                  type="password"
+                  name="password"
                   value={values.password}
-                  placeholder='Password'
+                  placeholder="Password"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  autoComplete='current-password'
-                  label='Password'
+                  autoComplete="current-password"
+                  label="Password"
                   error={touched.password && errors.password ? true : false}
+                  variant="filled"
                 />
                 {touched.password && errors.password ? (
-                  <ErrorMessage name='password' />
+                  <ErrorMessage name="password" />
                 ) : null}
 
-                <div className='form-controlers'>
+                <div className="form-controlers">
                   <FormControlLabel
-                    className='remember-checkbox'
+                    className="remember-checkbox"
                     control={
                       <Checkbox
                         checked={values.remember}
                         onChange={handleChange}
-                        name='remember'
-                        value='remember'
-                        color='primary'
+                        name="remember"
+                        value="remember"
+                        color="primary"
                       />
                     }
-                    label='Remember me'
+                    label="Remember me"
                   />
 
                   <Button
-                    type='submit'
-                    variant='contained'
-                    color='primary'
+                    type="submit"
+                    variant="contained"
+                    color="primary"
                     disabled={isSubmitting || !isValid}
                   >
                     Login
                     {isSubmitting && (
                       <CircularProgress
-                        style={{ marginInlineStart: '16px' }}
+                        style={{ marginInlineStart: "16px" }}
                         size={20}
                       />
                     )}

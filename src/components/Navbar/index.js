@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import useScroll from "react-use-scroll";
 import { ReactComponent as ArrowLeft } from "../../assets/icons/bx-left-arrow-alt.svg";
+import { ReactComponent as SignOutIconSvg } from "../../assets/icons/bx-log-out-circle.svg";
 import { AuthContext } from "../../context/auth-context";
 
 const Navbar = () => {
@@ -94,7 +95,15 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <a onClick={logOut}>Log out</a>
+                      <IconButton
+                        onClick={logOut}
+                        color="primary"
+                        size="medium"
+                      >
+                        <SignOutIconSvg
+                          style={{ transform: "rotateY(180deg)" }}
+                        />
+                      </IconButton>
                     </li>
                   </>
                 ) : (

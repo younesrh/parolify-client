@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -50,8 +50,12 @@ const GlobalStyle = createGlobalStyle`
   }
   .page{
     padding-top: 128px;
-    min-height: 100vh;
+    min-height: calc(100vh - 220px);
     position: relative;
+    .hero-title {
+      text-align: center;
+      padding-bottom: 24px;
+    }
   }
 
 `;
