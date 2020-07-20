@@ -42,6 +42,12 @@ const SongDetailed = styled.div`
     margin-top: 64px;
     margin-bottom: 64px;
   }
+  .download {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+    justify-content: center;
+  }
   .lyrics {
     max-width: 720px;
     padding: 64px;

@@ -28,7 +28,7 @@ const songsData = [
     videoUrl: adeleVideo,
     songName: "Adele - Hello",
     ratingsNumber: 2086,
-    rating: 4.8,
+    rating: 4.6,
     lyrics: `Hello, it's me
     I was wondering if after all these years you'd like to meet
     To go over everything
@@ -96,7 +96,7 @@ const songsData = [
     videoUrl: alanVideo,
     songName: "Alan Walker - Faded",
     ratingsNumber: 5412,
-    rating: 4.9,
+    rating: 4.0,
     lyrics: `You were the shadow to my light
     Did you feel us
     Another start
@@ -160,7 +160,7 @@ const songsData = [
     videoUrl: camilaVideo,
     songName: " Camila Cabello - Havana",
     ratingsNumber: 2086,
-    rating: 4.8,
+    rating: 4.2,
     lyrics: `Hey
     Havana, ooh na-na (ay)
     Half of my heart is in Havana, ooh-na-na (ay, ay)
@@ -240,7 +240,7 @@ const songsData = [
     videoUrl: edsherenVideo,
     songName: "Ed Sheeran - Shape of You",
     ratingsNumber: 2086,
-    rating: 4.8,
+    rating: 4.1,
     lyrics: `The club isn't the best place to find a lover
     So the bar is where I go
     Me and my friends at the table doing shots
@@ -340,7 +340,7 @@ const songsData = [
     videoUrl: gnashVideo,
     songName: " Gnash - I Hate U, I Love U",
     ratingsNumber: 2086,
-    rating: 4.8,
+    rating: 3.9,
     lyrics: `Feeling used but I'm still missing you
     And I can't see the end of this
     Just wanna feel your kiss
@@ -431,7 +431,7 @@ const songsData = [
     videoUrl: imaginVideo,
     songName: " Imagine Dragons - Believer",
     ratingsNumber: 2086,
-    rating: 4.8,
+    rating: 4.4,
     lyrics: `First things first
     I'mma say all the words inside my head
     I'm fired up and tired of the way that things have been, oh ooh
@@ -511,7 +511,7 @@ const songsData = [
     videoUrl: kendjiVideo,
     songName: " Kendji Girac - Sonrisa",
     ratingsNumber: 2086,
-    rating: 4.8,
+    rating: 4.0,
     lyrics: `Mi fuerza es mi sonrisa
     El cielo me lo regaló
     Me sigue noche y día
@@ -599,7 +599,7 @@ const songsData = [
     videoUrl: lpVideo,
     songName: " LP - Lost on You",
     ratingsNumber: 2086,
-    rating: 4.8,
+    rating: 3.7,
     lyrics: `When you get older, plainer, saner
     When you remember all the danger we came from
     Burning like embers, falling, tender
@@ -666,7 +666,7 @@ const songsData = [
     videoUrl: shawnVideo,
     songName: " Shawn Mendes - Treat You Better",
     ratingsNumber: 2086,
-    rating: 2.8,
+    rating: 4.5,
     lyrics: `I won't lie to you
     I know he's just not right for you
     And you can tell me if I'm off

@@ -9,7 +9,7 @@ export const ProtectedRoute = ({ component: RouteComponent, ...rest }) => {
     <Route
       {...rest}
       render={(routeProps) =>
-        !!token ? <RouteComponent {...routeProps} /> : <Redirect to="/login" />
+        token ? <RouteComponent {...routeProps} /> : <Redirect to="/login" />
       }
     />
   );
