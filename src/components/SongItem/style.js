@@ -9,6 +9,14 @@ const SongItem = styled.div`
   flex-direction: column;
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows[20]};
+  position: relative;
+
+  .delete-button {
+    z-index: 10;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
 
   .image {
     width: 100%;

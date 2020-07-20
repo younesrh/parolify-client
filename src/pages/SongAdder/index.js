@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import {
   Typography,
   Container,
@@ -8,17 +8,17 @@ import {
   FormControlLabel,
   CircularProgress,
   Hidden,
-} from '@material-ui/core';
-import { Styled } from './style';
-import { Formik, ErrorMessage } from 'formik';
-import Axios from 'axios';
-import { AuthContext } from '../../context/auth-context';
-import { useHistory } from 'react-router-dom';
-import { DataContext } from '../../context/data-context';
-import { ReactComponent as CoverIconSvg } from '../../assets/icons/bx-image-add.svg';
-import { ReactComponent as VideoIconSvg } from '../../assets/icons/bx-video-plus.svg';
-import { useState } from 'react';
-import { useEffect } from 'react';
+} from "@material-ui/core";
+import { Styled } from "./style";
+import { Formik, ErrorMessage } from "formik";
+import Axios from "axios";
+import { AuthContext } from "../../context/auth-context";
+import { useHistory } from "react-router-dom";
+import { DataContext } from "../../context/data-context";
+import { ReactComponent as CoverIconSvg } from "../../assets/icons/bx-image-add.svg";
+import { ReactComponent as VideoIconSvg } from "../../assets/icons/bx-video-plus.svg";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const SongAdder = () => {
   const history = useHistory();
@@ -29,18 +29,18 @@ const SongAdder = () => {
 
   return (
     <Container>
-      <Styled.SongAdder className='page'>
-        <Typography variant='h4' className='hero-title'>
+      <Styled.SongAdder className="page">
+        <Typography variant="h4" className="hero-title">
           Add song.
         </Typography>
-        <div className='form'>
+        <div className="form">
           <Formik
             // validationSchema={vSchema}
             validateOnMount={true}
             initialValues={{
-              artist_name: '',
-              song_name: '',
-              lyrics: '',
+              artist_name: "",
+              song_name: "",
+              lyrics: "",
               cover_file: null,
               video_file: null,
               ratings_number: Math.floor(Math.random() * 10000),
@@ -49,46 +49,46 @@ const SongAdder = () => {
             onSubmit={async (values, { setSubmitting, setFieldError }) => {
               setSubmitting(true);
 
-              let coverUrl = 'nikmok';
-              let videoUrl = 'nikmok';
+              let coverUrl = "sss";
+              let videoUrl = "sss";
 
               try {
                 // Upload cover
                 const formData = new FormData();
-                formData.append('coverFile', values.cover_file);
+                formData.append("coverFile", values.cover_file);
 
                 await Axios.post(
-                  'http://localhost:3001/api/songs/cover/upload',
+                  "http://localhost:3001/api/songs/cover/upload",
                   formData,
                   {
                     headers: {
-                      'Content-Type': 'multipart/form-data',
+                      "Content-Type": "multipart/form-data",
                     },
                   }
                 )
                   .then((response) => {
-                    coverUrl = 'static/' + response.data.filename;
+                    coverUrl = "static/" + response.data.filename;
                   })
                   .then(() => {
                     // Upload video
                     const formData2 = new FormData();
-                    formData2.append('videoFile', values.video_file);
+                    formData2.append("videoFile", values.video_file);
 
                     Axios.post(
-                      'http://localhost:3001/api/songs/video/upload',
+                      "http://localhost:3001/api/songs/video/upload",
                       formData2,
                       {
                         headers: {
-                          'Content-Type': 'multipart/form-data',
+                          "Content-Type": "multipart/form-data",
                         },
                       }
                     )
                       .then((response) => {
-                        videoUrl = 'static/' + response.data.filename;
+                        videoUrl = "static/" + response.data.filename;
                       })
                       .then(() => {
                         Axios.post(
-                          'http://localhost:3001/api/songs/add',
+                          "http://localhost:3001/api/songs/add",
                           {
                             artist_name: values.artist_name,
                             song_name: values.song_name,
@@ -100,7 +100,7 @@ const SongAdder = () => {
                           },
                           {
                             headers: {
-                              'auth-token': token,
+                              "auth-token": token,
                             },
                           }
                         )
@@ -117,7 +117,7 @@ const SongAdder = () => {
                             };
                             setSongs([parsedSong, ...songs]);
                             setSubmitting(false);
-                            history.push('/songs-list');
+                            history.push("/songs-list");
                           })
                           .catch((err) => {
                             console.error(err);
@@ -152,111 +152,111 @@ const SongAdder = () => {
               <form
                 onSubmit={handleSubmit}
                 noValidate
-                encType='multipart/form-data'
+                encType="multipart/form-data"
               >
                 <TextField
-                  type='text'
-                  name='song_name'
+                  type="text"
+                  name="song_name"
                   value={values.song_name}
-                  placeholder='Song name'
+                  placeholder="Song name"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  label='Song name'
+                  label="Song name"
                   error={touched.song_name && errors.song_name ? true : false}
                 />
                 {touched.song_name && errors.song_name ? (
-                  <ErrorMessage name='song_name' />
+                  <ErrorMessage name="song_name" />
                 ) : null}
 
                 <TextField
-                  type='text'
-                  name='artist_name'
+                  type="text"
+                  name="artist_name"
                   value={values.artist_name}
-                  placeholder='Artist name'
+                  placeholder="Artist name"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  label='Artist name'
+                  label="Artist name"
                   error={
                     touched.artist_name && errors.artist_name ? true : false
                   }
                 />
                 {touched.artist_name && errors.artist_name ? (
-                  <ErrorMessage name='artist_name' />
+                  <ErrorMessage name="artist_name" />
                 ) : null}
 
                 <TextField
-                  type='text'
-                  name='lyrics'
+                  type="text"
+                  name="lyrics"
                   value={values.lyrics}
-                  placeholder='Lyrics'
+                  placeholder="Lyrics"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  label='Lyrics'
+                  label="Lyrics"
                   error={touched.lyrics && errors.lyrics ? true : false}
                 />
                 {touched.lyrics && errors.lyrics ? (
-                  <ErrorMessage name='lyrics' />
+                  <ErrorMessage name="lyrics" />
                 ) : null}
 
                 <input
-                  accept='image/*'
-                  id='contained-button-cover'
-                  type='file'
-                  style={{ display: 'none' }}
-                  name='cover_file'
+                  accept="image/*"
+                  id="contained-button-cover"
+                  type="file"
+                  style={{ display: "none" }}
+                  name="cover_file"
                   values={values.cover_file}
                   onChange={(event) => {
-                    setFieldValue('cover_file', event.currentTarget.files[0]);
+                    setFieldValue("cover_file", event.currentTarget.files[0]);
                   }}
                 />
-                <label htmlFor='contained-button-cover'>
+                <label htmlFor="contained-button-cover">
                   <Button
-                    variant='contained'
-                    color='primary'
-                    component='span'
-                    startIcon={<CoverIconSvg style={{ fill: 'white' }} />}
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                    startIcon={<CoverIconSvg style={{ fill: "white" }} />}
                   >
                     Choose cover image
                   </Button>
                 </label>
 
                 <input
-                  accept='video/mp4,video/x-m4v,video/*'
-                  id='contained-button-video'
-                  type='file'
-                  style={{ display: 'none' }}
-                  name='video_file'
+                  accept="video/mp4,video/x-m4v,video/*"
+                  id="contained-button-video"
+                  type="file"
+                  style={{ display: "none" }}
+                  name="video_file"
                   values={values.video_file}
                   onChange={(event) => {
-                    setFieldValue('video_file', event.currentTarget.files[0]);
+                    setFieldValue("video_file", event.currentTarget.files[0]);
                   }}
                 />
-                <label htmlFor='contained-button-video'>
+                <label htmlFor="contained-button-video">
                   <Button
-                    variant='contained'
-                    color='primary'
-                    component='span'
-                    startIcon={<VideoIconSvg style={{ fill: 'white' }} />}
+                    variant="contained"
+                    color="primary"
+                    component="span"
+                    startIcon={<VideoIconSvg style={{ fill: "white" }} />}
                   >
                     Choose video
                   </Button>
                 </label>
 
                 {touched.video_url && errors.video_url ? (
-                  <ErrorMessage name='video_url' />
+                  <ErrorMessage name="video_url" />
                 ) : null}
 
-                <div className='form-controlers'>
+                <div className="form-controlers">
                   <Button
-                    type='submit'
-                    variant='contained'
-                    color='primary'
+                    type="submit"
+                    variant="contained"
+                    color="primary"
                     disabled={isSubmitting || !isValid}
                   >
                     Add song
                     {isSubmitting && (
                       <CircularProgress
-                        style={{ marginInlineStart: '16px' }}
+                        style={{ marginInlineStart: "16px" }}
                         size={20}
                       />
                     )}

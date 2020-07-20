@@ -57,7 +57,12 @@ const Navbar = () => {
           <Link to="/">
             <LogoSvg />
           </Link>
-          <span>{currentUser && `Hello ${currentUser.name}`}</span>
+          <div>
+            {currentUser && <span>{`Hello ${currentUser.name}`}</span>}{" "}
+            {currentUser && currentUser.isAdmin ? (
+              <span className="admin">Admin</span>
+            ) : null}
+          </div>
         </div>
         <div className="menu">
           <ul>

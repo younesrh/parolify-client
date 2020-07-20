@@ -36,7 +36,7 @@ const Register = () => {
               email: "",
               name: "",
               password: "",
-              remember: false,
+              agreed: false,
             }}
             onSubmit={(values, { setSubmitting, setFieldError }) => {
               setSubmitting(true);
@@ -113,14 +113,14 @@ const Register = () => {
                     className="remember-checkbox"
                     control={
                       <Checkbox
-                        checked={values.remember}
+                        checked={values.agree}
                         onChange={handleChange}
-                        name="remember"
-                        value="remember"
+                        name="agree"
+                        value="agree"
                         color="primary"
                       />
                     }
-                    label="Remember me"
+                    label="I agree on the terms!"
                   />
                   <Button
                     type="submit"

@@ -20,6 +20,14 @@ const Navbar = styled.nav`
     }
   }
 
+  .admin {
+    background-color: ${({ theme }) => theme.palette.primary.main};
+    color: white;
+    padding: 8px;
+    border-radius: 16px;
+    font-size: 14px;
+  }
+
   .navbar-inner {
     padding: 16px 0;
     display: flex;

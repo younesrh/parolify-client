@@ -17,9 +17,14 @@ export const AuthProvider = ({ children }) => {
         },
       }).then((res) => {
         setCurrentUser(res.data);
+        console.log(currentUser);
       });
     }
   }, [token]);
+
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
 
   return (
     <AuthContext.Provider
