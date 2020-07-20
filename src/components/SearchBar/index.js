@@ -20,9 +20,7 @@ const SearchBar = () => {
           />
         </div>
         <div className="search-button">
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
+          <SearchIcon />
         </div>
       </div>
 

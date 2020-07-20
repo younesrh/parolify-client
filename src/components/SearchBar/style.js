@@ -15,6 +15,7 @@ const SearchBar = styled.div`
     justify-content: center;
     width: 100%;
     max-width: 720px;
+    position: relative;
     .search-field {
       height: 64px;
       width: 100%;
@@ -37,7 +38,15 @@ const SearchBar = styled.div`
       }
     }
     .search-button {
+      display: flex;
+      /* background: red; */
+      align-items: center;
       margin-inline-start: 8px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 16px;
+      margin: auto 0;
 
       svg {
         width: 32px;
