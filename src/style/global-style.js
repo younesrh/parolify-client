@@ -19,6 +19,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   body {
+    
     font-size: 15px;
     height: 100%;
     overflow-x: hidden !important;
@@ -57,6 +58,7 @@ const GlobalStyle = createGlobalStyle`
       padding-bottom: 24px;
     }
   }
+
 
 `;
 

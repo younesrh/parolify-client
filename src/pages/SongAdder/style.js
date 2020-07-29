@@ -37,6 +37,12 @@ const SongAdder = styled.div`
     opacity: 25%;
     margin-top: 32px;
   }
+
+  .file-input {
+    svg {
+      fill: ${({ theme }) => theme.palette.text.primary} !important;
+    }
+  }
 `;
 
 export const Styled = {

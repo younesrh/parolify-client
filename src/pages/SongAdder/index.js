@@ -219,6 +219,7 @@ const SongAdder = () => {
                     color="primary"
                     component="span"
                     startIcon={<CoverIconSvg />}
+                    className="file-input"
                   >
                     Choose cover image
                   </Button>
@@ -240,6 +241,7 @@ const SongAdder = () => {
                     color="primary"
                     component="span"
                     startIcon={<VideoIconSvg />}
+                    className="file-input"
                   >
                     Choose video
                   </Button>

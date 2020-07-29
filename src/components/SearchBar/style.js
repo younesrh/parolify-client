@@ -27,10 +27,11 @@ const SearchBar = styled.div`
         height: 100%;
         padding: 8px 16px;
         border-radius: 16px;
-        background-color: ${({ theme }) => theme.palette.grey[100]};
+        background-color: ${({ theme }) => theme.palette.background.paper};
         outline: none;
         border: 3px solid ${({ theme }) => theme.palette.grey[500]};
         font-size: 16px;
+        color: ${({ theme }) => theme.palette.text.primary};
         &:hover,
         &:focus {
           border-color: ${({ theme }) => theme.palette.primary.main};

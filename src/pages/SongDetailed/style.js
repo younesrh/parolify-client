@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const SongDetailed = styled.div`
+  position: relative;
+  z-index: 10;
   .song-cover {
     /* transform: translateY(-128px); */
     width: 100%;
@@ -10,7 +12,7 @@ const SongDetailed = styled.div`
     left: 0;
     z-index: -1;
     img {
-      object-fit: cover;
+      object-fit: cover; //
       width: 100%;
       height: 100%;
     }
@@ -46,12 +48,13 @@ const SongDetailed = styled.div`
     display: flex;
     align-items: center;
     margin-top: 24px;
+    margin-bottom: 24px;
     justify-content: center;
   }
   .lyrics {
     max-width: 720px;
     padding: 64px;
-    background: white;
+    background: ${({ theme }) => theme.palette.background.paper};
     border-radius: 64px;
     margin: 0 auto;
   }

@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import "./App.css";
+import "./app-style.js";
 
 import {
   Route,
@@ -11,8 +11,7 @@ import {
 import Home from "./pages/Home";
 import Songs from "./pages/Songs";
 import Navbar from "./components/Navbar";
-import ThemeProvider from "./style/ThemeProvider";
-import { themeObject } from "./style/theme";
+import { darkTheme, lightTheme } from "./style/theme";
 import Footer from "./components/Footer";
 import SongDetailed from "./pages/SongDetailed";
 import { ProtectedRoute } from "./routes";
@@ -21,10 +20,16 @@ import Register from "./pages/Register";
 import { AuthProvider, AuthContext } from "./context/auth-context";
 import axios from "axios";
 import SongAdder from "./pages/SongAdder";
+import { Styled } from "./app-style.js";
+import { ThemeProvider } from "./context/theme-context.js";
 
 function App() {
   const location = useLocation();
   const { token, setCurrentUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log(darkTheme);
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -45,8 +50,8 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <ThemeProvider theme={themeObject}>
-      <div className="app">
+    <ThemeProvider>
+      <Styled.App>
         <Navbar />
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
@@ -58,7 +63,7 @@ function App() {
           <Redirect to="/" />
         </Switch>
         <Footer />
-      </div>
+      </Styled.App>
     </ThemeProvider>
   );
 }

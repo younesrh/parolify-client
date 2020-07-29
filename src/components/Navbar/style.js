@@ -10,12 +10,12 @@ const Navbar = styled.nav`
   z-index: 900000;
 
   &.--moving {
-    background: white;
+    background: ${({ theme }) => theme.palette.background.default};
     .arrow-button {
       svg {
         width: 36px;
         height: 36px;
-        fill: black !important;
+        fill: ${({ theme }) => theme.palette.primary.main};
       }
     }
   }
@@ -39,8 +39,8 @@ const Navbar = styled.nav`
       .logo {
         display: flex;
         border-radius: 100px;
-        border: 2px solid white;
-        background: white;
+        border: 2px solid transparent;
+        background: ${({ theme }) => theme.palette.background.paper};
         padding-inline-end: 1rem;
         overflow: hidden;
       }
@@ -82,6 +82,9 @@ const Navbar = styled.nav`
       align-items: center;
       list-style: none;
       li {
+        svg {
+          fill: ${({ theme }) => theme.palette.text.primary};
+        }
         a {
           padding: 8px 16px;
           transition: all ease-in-out 200ms;

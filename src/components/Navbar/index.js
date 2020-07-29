@@ -8,11 +8,16 @@ import { useState } from "react";
 import useScroll from "react-use-scroll";
 import { ReactComponent as ArrowLeft } from "../../assets/icons/bx-left-arrow-alt.svg";
 import { ReactComponent as SignOutIconSvg } from "../../assets/icons/bx-log-out-circle.svg";
+import { ReactComponent as SunIconSvg } from "../../assets/icons/bx-sun.svg";
+import { ReactComponent as MoonIconSvg } from "../../assets/icons/bx-moon.svg";
 import { AuthContext } from "../../context/auth-context";
+import { ThemeContext } from "../../context/theme-context";
 
 const Navbar = () => {
   const { token, currentUser, setCurrentUser } = useContext(AuthContext);
   const location = useLocation();
+
+  const { isDark, toggleTheme } = useContext(ThemeContext);
 
   const [isDetailedSong, setDetailedSong] = useState(false);
   const [isMoving, setMoving] = useState(false);
@@ -100,9 +105,7 @@ const Navbar = () => {
                         color="primary"
                         size="medium"
                       >
-                        <SignOutIconSvg
-                          style={{ transform: "rotateY(180deg)" }}
-                        />
+                        <SignOutIconSvg />
                       </IconButton>
                     </li>
                   </>
@@ -120,6 +123,15 @@ const Navbar = () => {
                     </li>
                   </>
                 )}
+                <li>
+                  <IconButton
+                    onClick={() => toggleTheme()}
+                    color="primary"
+                    size="medium"
+                  >
+                    {isDark ? <SunIconSvg /> : <MoonIconSvg />}
+                  </IconButton>
+                </li>
               </>
             )}
           </ul>

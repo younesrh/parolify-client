@@ -10,6 +10,7 @@ const SongItem = styled.div`
   overflow: hidden;
   box-shadow: ${({ theme }) => theme.shadows[20]};
   position: relative;
+  /* background: ${({ theme }) => theme.palette.background.paper}; */
 
   .delete-button {
     z-index: 10;
