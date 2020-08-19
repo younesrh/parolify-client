@@ -49,8 +49,8 @@ const SongAdder = () => {
             onSubmit={async (values, { setSubmitting, setFieldError }) => {
               setSubmitting(true);
 
-              let coverUrl = "sss";
-              let videoUrl = "sss";
+              let coverUrl = "";
+              let videoUrl = "";
 
               try {
                 // Upload cover

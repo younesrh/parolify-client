@@ -28,10 +28,6 @@ function App() {
   const { token, setCurrentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log(darkTheme);
-  }, []);
-
-  useEffect(() => {
     if (token) {
       axios
         .get("http://localhost:3001/api/auth", {

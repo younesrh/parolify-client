@@ -22,8 +22,6 @@ export const ThemeProvider = ({ children }) => {
     }
   }
 
-  useEffect(() => {}, []);
-
   return (
     <ThemeContext.Provider
       value={{
