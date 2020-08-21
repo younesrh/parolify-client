@@ -9,6 +9,8 @@ import 'video-react/dist/video-react.css'; // import css
 import { useContext } from 'react';
 import { DataContext } from '../../context/data-context';
 import { ReactComponent as DownloadIconSvg } from '../../assets/icons/bx-cloud-download.svg';
+import { AuthContext } from '../../context/auth-context';
+import Axios from 'axios';
 
 const SongDetailed = () => {
   const { id } = useParams();
@@ -22,6 +24,25 @@ const SongDetailed = () => {
       setStars(selectedSong.rating);
     }
   }, [selectedSong, id, songs]);
+
+  const { token } = useContext(AuthContext);
+
+  // Update views
+  useEffect(() => {
+    Axios.post(
+      'http://localhost:3001/api/songs/update-views',
+      {
+        id: id,
+      },
+      {
+        headers: {
+          'auth-token': token,
+        },
+      }
+    ).then((res) => {
+      console.log(res.data);
+    });
+  }, [id, token]);
 
   useEffect(() => {
     if (selectedSong) {
@@ -42,7 +63,7 @@ const SongDetailed = () => {
           <Container>
             <div className='ratings'>
               <Typography variant='body2'>
-                Views: {selectedSong.views}. Ratings{' '}
+                Views: {selectedSong.views + 1}. Ratings{' '}
                 {selectedSong.ratingsNumber} {`(${selectedSong.rating})`}
               </Typography>
               <Rating
