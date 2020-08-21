@@ -1,18 +1,18 @@
-import React, { createContext, useState, useEffect } from "react";
-import Axios from "axios";
+import React, { createContext, useState, useEffect } from 'react';
+import Axios from 'axios';
 
 export const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
   const [songs, setSongs] = useState([]);
   const [token, setToken] = useState(
-    JSON.parse(localStorage.getItem("auth-token")) || null
+    JSON.parse(localStorage.getItem('auth-token')) || null
   );
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/songs", {
+    Axios.get('http://localhost:3001/api/songs', {
       headers: {
-        "auth-token": token,
+        'auth-token': token,
       },
     }).then((res) => {
       console.log(res.data);
@@ -26,6 +26,7 @@ export const DataProvider = ({ children }) => {
           ratingsNumber: song.ratings_number,
           rating: song.rating,
           lyrics: song.lyrics,
+          views: song.views,
         }))
       );
     });
