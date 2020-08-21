@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { Typography, Container, Button } from '@material-ui/core';
+import {
+  Typography,
+  Container,
+  Button,
+  CircularProgress,
+} from '@material-ui/core';
 import { Styled } from './style';
 import { useParams, useHistory } from 'react-router-dom';
 import Rating from '@material-ui/lab/Rating';
@@ -14,16 +19,16 @@ import Axios from 'axios';
 
 const SongDetailed = () => {
   const { id } = useParams();
-  const { songs } = useContext(DataContext);
-  const [selectedSong, setSelectedSong] = useState();
+  // const { songs } = useContext(DataContext);
+  const [selectedSong, setSelectedSong] = useState(null);
   const [stars, setStars] = useState();
 
-  useEffect(() => {
-    setSelectedSong(songs.find((song) => song.id === id) || null);
-    if (selectedSong) {
-      setStars(selectedSong.rating);
-    }
-  }, [selectedSong, id, songs]);
+  // useEffect(() => {
+  //   setSelectedSong(songs.find((song) => song.id === id) || null);
+  //   if (selectedSong) {
+  //     setStars(selectedSong.rating);
+  //   }
+  // }, [selectedSong, id, songs]);
 
   const { token } = useContext(AuthContext);
 
@@ -40,15 +45,35 @@ const SongDetailed = () => {
         },
       }
     ).then((res) => {
-      console.log(res.data);
+      console.log(res);
+      setSelectedSong(res.data);
     });
+
+    return () => {
+      setSelectedSong(null);
+    };
   }, [id, token]);
 
   useEffect(() => {
     if (selectedSong) {
       setStars(selectedSong.rating);
     }
+
+    return () => {
+      setStars(0);
+    };
   }, [selectedSong]);
+
+  if (selectedSong === null) {
+    return (
+      <Styled.SongDetailed className='page'>
+        <div className='song-detailed-loading'>
+          <Typography variant='h6'>Loading song...</Typography>
+          <CircularProgress size={64} />
+        </div>
+      </Styled.SongDetailed>
+    );
+  }
 
   return (
     <>
@@ -56,7 +81,7 @@ const SongDetailed = () => {
         <Styled.SongDetailed className='page'>
           <div className='song-cover'>
             <img
-              src={`http://localhost:3001/${selectedSong.coverImage}`}
+              src={`http://localhost:3001/${selectedSong.cover_image}`}
               alt='Cover'
             />
           </div>
@@ -64,7 +89,7 @@ const SongDetailed = () => {
             <div className='ratings'>
               <Typography variant='body2'>
                 Views: {selectedSong.views + 1}. Ratings{' '}
-                {selectedSong.ratingsNumber} {`(${selectedSong.rating})`}
+                {`(${selectedSong.rating})`}
               </Typography>
               <Rating
                 name='simple-controlled'
@@ -76,11 +101,11 @@ const SongDetailed = () => {
                 size='large'
               />
             </div>
-            <Typography variant='h3'>{`${selectedSong.artistName} - ${selectedSong.songName}`}</Typography>
+            <Typography variant='h3'>{`${selectedSong.artist_name} - ${selectedSong.song_name}`}</Typography>
             <div className='video'>
               <Player>
                 <source
-                  src={`http://localhost:3001/${selectedSong.videoUrl}`}
+                  src={`http://localhost:3001/${selectedSong.video_url}`}
                 />
               </Player>
             </div>
@@ -88,7 +113,7 @@ const SongDetailed = () => {
               <Button
                 variant='contained'
                 color='secondary'
-                href={`http://localhost:3001/${selectedSong.videoUrl}`}
+                href={`http://localhost:3001/${selectedSong.video_url}`}
                 download
                 target='_blank'
                 endIcon={<DownloadIconSvg style={{ fill: 'white' }} />}

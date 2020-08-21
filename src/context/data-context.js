@@ -30,7 +30,7 @@ export const DataProvider = ({ children }) => {
         }))
       );
     });
-  }, []);
+  }, [token]);
 
   return (
     <DataContext.Provider
