@@ -22,6 +22,7 @@ import axios from "axios";
 import SongAdder from "./pages/SongAdder";
 import { Styled } from "./app-style.js";
 import { ThemeProvider } from "./context/theme-context.js";
+import ArtistSongs from "./pages/ArtistSongs/index.js";
 
 function App() {
   const location = useLocation();
@@ -56,6 +57,11 @@ function App() {
           <ProtectedRoute exact path="/songs-list" component={Songs} />
           <ProtectedRoute exact path="/songs-list/add" component={SongAdder} />
           <ProtectedRoute exact path="/songs/:id" component={SongDetailed} />
+          <ProtectedRoute
+            exact
+            path="/artists/:artist"
+            component={ArtistSongs}
+          />
           <Redirect to="/" />
         </Switch>
         <Footer />

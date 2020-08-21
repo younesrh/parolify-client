@@ -3,6 +3,18 @@ import styled from "styled-components";
 const SongDetailed = styled.div`
   position: relative;
   z-index: 10;
+  .song-detailed-loading {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 80vh;
+    h6 {
+      margin-bottom: 36px;
+      color: ${({ theme }) => theme.palette.text.primary};
+    }
+  }
   .song-cover {
     /* transform: translateY(-128px); */
     width: 100%;
@@ -43,6 +55,10 @@ const SongDetailed = styled.div`
     text-align: center;
     margin-top: 64px;
     margin-bottom: 64px;
+    a {
+      font-family: "EB Garamond";
+      text-decoration: underline;
+    }
   }
   .download {
     display: flex;
