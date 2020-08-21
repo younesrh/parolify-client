@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const SongDetailed = styled.div`
   position: relative;
@@ -29,7 +29,7 @@ const SongDetailed = styled.div`
       height: 100%;
     }
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
@@ -55,6 +55,10 @@ const SongDetailed = styled.div`
     text-align: center;
     margin-top: 64px;
     margin-bottom: 64px;
+    a {
+      font-family: "EB Garamond";
+      text-decoration: underline;
+    }
   }
   .download {
     display: flex;
