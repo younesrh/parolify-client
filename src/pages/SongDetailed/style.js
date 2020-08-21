@@ -12,7 +12,7 @@ const SongDetailed = styled.div`
     height: 80vh;
     h6 {
       margin-bottom: 36px;
-      color: black;
+      color: ${({ theme }) => theme.palette.text.primary};
     }
   }
   .song-cover {
