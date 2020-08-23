@@ -1,15 +1,15 @@
 import React from "react";
 import { Container } from "@material-ui/core";
 import { Styled } from "./style";
-import SongsList from "../../components/SongsList";
 import { useParams } from "react-router-dom";
+import FilteredSongs from "../../components/FilteredSongs";
 
 const ArtistSongs = () => {
   const { artist } = useParams();
   return (
     <Container>
       <Styled.ArtistSongs className="page">
-        <SongsList search={artist} />
+        <FilteredSongs search={artist} />
       </Styled.ArtistSongs>
     </Container>
   );
