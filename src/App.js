@@ -25,6 +25,7 @@ import { ThemeProvider } from './context/theme-context.js';
 import ArtistSongs from './pages/ArtistSongs/index.js';
 import Terms from './pages/Terms/index.js';
 import About from './pages/About/index.js';
+import Contact from './pages/Contact/index.js';
 
 function App() {
   const location = useLocation();
@@ -58,6 +59,7 @@ function App() {
           <Route exact path='/register' component={Register} />
           <Route exact path='/terms' component={Terms} />
           <Route exact path='/about' component={About} />
+          <Route exact path='/contact' component={Contact} />
           <ProtectedRoute exact path='/songs-list' component={Songs} />
           <ProtectedRoute exact path='/songs-list/add' component={SongAdder} />
           <ProtectedRoute exact path='/songs/:id' component={SongDetailed} />
