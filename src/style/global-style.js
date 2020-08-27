@@ -52,7 +52,7 @@ const GlobalStyle = createGlobalStyle`
   }
   .page{
     padding-top: 128px;
-    min-height: calc(100vh - 220px);
+    min-height: calc(100vh - 100px);
     position: relative;
     .hero-title {
       text-align: center;
