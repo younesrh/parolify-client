@@ -5,11 +5,8 @@ import SongItem from "../SongItem";
 // import songsData from "./data";
 import { useContext } from "react";
 import { DataContext } from "../../context/data-context";
-import Axios from "axios";
 
-const SongsList = () => {
-  const { songs } = useContext(DataContext);
-
+const SongsList = ({ songs }) => {
   return (
     <Container>
       <Styled.SongsList className="page">

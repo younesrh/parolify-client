@@ -42,12 +42,6 @@ const Navbar = () => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    if (token) {
-      history.push("/");
-    }
-  }, [token]);
-
   const logOut = () => {
     setCurrentUser(null);
     history.push("/login");
