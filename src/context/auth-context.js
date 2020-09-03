@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      Axios.get("http://localhost:3001/api/auth", {
+      Axios.get(`${process.env.REACT_APP_SERVER_URL}/api/auth`, {
         headers: {
           "auth-token": token,
         },

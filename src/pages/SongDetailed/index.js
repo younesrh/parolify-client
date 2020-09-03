@@ -35,7 +35,7 @@ const SongDetailed = () => {
   // Update views
   useEffect(() => {
     Axios.post(
-      "http://localhost:3001/api/songs/update-views",
+      `${process.env.REACT_APP_SERVER_URL}/api/songs/update-views`,
       {
         id: id,
       },
@@ -81,7 +81,7 @@ const SongDetailed = () => {
         <Styled.SongDetailed className="page">
           <div className="song-cover">
             <img
-              src={`http://localhost:3001/${selectedSong.cover_image}`}
+              src={`${process.env.REACT_APP_SERVER_URL}/${selectedSong.cover_image}`}
               alt="Cover"
             />
           </div>
@@ -110,7 +110,7 @@ const SongDetailed = () => {
             <div className="video">
               <Player>
                 <source
-                  src={`http://localhost:3001/${selectedSong.video_url}`}
+                  src={`${process.env.REACT_APP_SERVER_URL}/${selectedSong.video_url}`}
                 />
               </Player>
             </div>
@@ -118,7 +118,7 @@ const SongDetailed = () => {
               <Button
                 variant="contained"
                 color="secondary"
-                href={`http://localhost:3001/${selectedSong.video_url}`}
+                href={`${process.env.REACT_APP_SERVER_URL}/${selectedSong.video_url}`}
                 download
                 target="_blank"
                 endIcon={<DownloadIconSvg style={{ fill: "white" }} />}

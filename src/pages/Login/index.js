@@ -41,7 +41,7 @@ const Login = () => {
               setSubmitting(true);
 
               axios
-                .post("http://localhost:3001/api/auth/login", {
+                .post(`${process.env.REACT_APP_SERVER_URL}/api/auth/login`, {
                   email: values.email,
                   password: values.password,
                 })

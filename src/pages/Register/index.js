@@ -42,7 +42,7 @@ const Register = () => {
               setSubmitting(true);
 
               axios
-                .post("http://localhost:3001/api/auth/signup", {
+                .post(`${process.env.REACT_APP_SERVER_URL}/api/auth/signup`, {
                   email: values.email,
                   name: values.name,
                   password: values.password,

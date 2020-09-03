@@ -58,7 +58,7 @@ const SongAdder = () => {
                 formData.append("coverFile", values.cover_file);
 
                 await Axios.post(
-                  "http://localhost:3001/api/songs/cover/upload",
+                  `${process.env.REACT_APP_SERVER_URL}/api/songs/cover/upload`,
                   formData,
                   {
                     headers: {
@@ -75,7 +75,7 @@ const SongAdder = () => {
                     formData2.append("videoFile", values.video_file);
 
                     Axios.post(
-                      "http://localhost:3001/api/songs/video/upload",
+                      `${process.env.REACT_APP_SERVER_URL}/api/songs/video/upload`,
                       formData2,
                       {
                         headers: {
@@ -88,7 +88,7 @@ const SongAdder = () => {
                       })
                       .then(() => {
                         Axios.post(
-                          "http://localhost:3001/api/songs/add",
+                          `${process.env.REACT_APP_SERVER_URL}/api/songs/add`,
                           {
                             artist_name: values.artist_name,
                             song_name: values.song_name,

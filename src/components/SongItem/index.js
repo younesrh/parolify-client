@@ -24,7 +24,7 @@ const SongItem = ({
 
   const deleteSong = (id) => {
     Axios.post(
-      `http://localhost:3001/api/songs/delete`,
+      `${process.env.REACT_APP_SERVER_URL}/api/songs/delete`,
       {
         id: id,
       },
@@ -50,7 +50,10 @@ const SongItem = ({
         </div>
       )}
       <div className="image">
-        <img src={`http://localhost:3001/${coverImage}`} alt="Cover" />
+        <img
+          src={`${process.env.REACT_APP_SERVER_URL}/${coverImage}`}
+          alt="Cover"
+        />
       </div>
       <div className="info">
         <div className="header">
