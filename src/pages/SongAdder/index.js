@@ -66,15 +66,15 @@ const SongAdder = () => {
                     },
                   }
                 )
-                  .then((response) => {
-                    coverUrl = "static/" + response.data.filename;
+                  .then(async (response) => {
+                    coverUrl = (await "static/") + response.data.filename;
                   })
-                  .then(() => {
+                  .then(async () => {
                     // Upload video
                     const formData2 = new FormData();
                     formData2.append("videoFile", values.video_file);
 
-                    Axios.post(
+                    await Axios.post(
                       `${process.env.REACT_APP_SERVER_URL}/api/songs/video/upload`,
                       formData2,
                       {
@@ -83,11 +83,11 @@ const SongAdder = () => {
                         },
                       }
                     )
-                      .then((response) => {
-                        videoUrl = "static/" + response.data.filename;
+                      .then(async (response) => {
+                        videoUrl = (await "static/") + response.data.filename;
                       })
-                      .then(() => {
-                        Axios.post(
+                      .then(async () => {
+                        await Axios.post(
                           `${process.env.REACT_APP_SERVER_URL}/api/songs/add`,
                           {
                             artist_name: values.artist_name,
