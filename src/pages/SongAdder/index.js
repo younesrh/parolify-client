@@ -258,7 +258,7 @@ const SongAdder = () => {
                     color="primary"
                     disabled={isSubmitting || !isValid}
                   >
-                    Add song
+                    {isSubmitting ? "Add song" : "Uploading, please wait"}
                     {isSubmitting && (
                       <CircularProgress
                         style={{ marginInlineStart: "16px" }}
