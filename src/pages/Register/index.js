@@ -13,6 +13,7 @@ import { Formik, ErrorMessage } from "formik";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
+import vSchema from "./validation";
 
 const Register = () => {
   const history = useHistory();
@@ -30,13 +31,12 @@ const Register = () => {
         </Typography>
         <div className="form">
           <Formik
-            // validationSchema={vSchema}
-            validateOnMount={true}
+            validationSchema={vSchema}
             initialValues={{
               email: "",
               name: "",
               password: "",
-              agreed: false,
+              agree: false,
             }}
             onSubmit={(values, { setSubmitting, setFieldError }) => {
               setSubmitting(true);
@@ -51,7 +51,11 @@ const Register = () => {
                   console.log(res);
                   history.push("/login");
                 })
-                .catch((err) => console.error(err));
+                .catch((err) => {
+                  setFieldError("general", err);
+                  setSubmitting(false);
+                  console.error(err);
+                });
             }}
           >
             {({
@@ -76,10 +80,13 @@ const Register = () => {
                   label="Email"
                   error={touched.email && errors.email ? true : false}
                   variant="filled"
+                  helperText={
+                    touched.email && errors.email ? (
+                      <ErrorMessage name="email" />
+                    ) : null
+                  }
                 />
-                {touched.email && errors.email ? (
-                  <ErrorMessage name="email" />
-                ) : null}
+
                 <TextField
                   type="text"
                   name="name"
@@ -91,10 +98,13 @@ const Register = () => {
                   label="Name"
                   error={touched.name && errors.name ? true : false}
                   variant="filled"
+                  helperText={
+                    touched.name && errors.name ? (
+                      <ErrorMessage name="name" />
+                    ) : null
+                  }
                 />
-                {touched.name && errors.name ? (
-                  <ErrorMessage name="name" />
-                ) : null}
+
                 <TextField
                   type="password"
                   name="password"
@@ -106,10 +116,12 @@ const Register = () => {
                   label="Password"
                   error={touched.password && errors.password ? true : false}
                   variant="filled"
+                  helperText={
+                    touched.password && errors.password ? (
+                      <ErrorMessage name="password" />
+                    ) : null
+                  }
                 />
-                {touched.password && errors.password ? (
-                  <ErrorMessage name="password" />
-                ) : null}
 
                 <div className="form-controlers">
                   <FormControlLabel
@@ -123,8 +135,12 @@ const Register = () => {
                         color="primary"
                       />
                     }
-                    label="I agree on the terms!"
+                    label="Agree on the terms!"
                   />
+                  {errors.agreed ? (
+                    <ErrorMessage name="agree" style={{ color: "red" }} />
+                  ) : null}
+                  {errors.general ? <ErrorMessage name="general" /> : null}
                   <Button
                     type="submit"
                     variant="contained"

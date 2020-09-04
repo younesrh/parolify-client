@@ -13,6 +13,7 @@ import { Formik, ErrorMessage } from "formik";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/auth-context";
+import vSchema from "./validation";
 
 const Login = () => {
   const history = useHistory();
@@ -30,8 +31,8 @@ const Login = () => {
         </Typography>
         <div className="form">
           <Formik
-            // validationSchema={vSchema}
-            validateOnMount={true}
+            validationSchema={vSchema}
+            // validateOnMount={true}
             initialValues={{
               email: "",
               password: "",
@@ -52,7 +53,8 @@ const Login = () => {
                   // history.push("/");
                 })
                 .catch((err) => {
-                  console.error(err);
+                  setFieldError("general", err);
+                  console.error(err.data);
                   setSubmitting(false);
                 });
             }}
@@ -79,10 +81,12 @@ const Login = () => {
                   label="Email"
                   error={touched.email && errors.email ? true : false}
                   variant="filled"
+                  helperText={
+                    touched.email && errors.email ? (
+                      <ErrorMessage name="email" className="validation-error" />
+                    ) : null
+                  }
                 />
-                {touched.email && errors.email ? (
-                  <ErrorMessage name="email" />
-                ) : null}
                 <TextField
                   type="password"
                   name="password"
@@ -94,10 +98,17 @@ const Login = () => {
                   label="Password"
                   error={touched.password && errors.password ? true : false}
                   variant="filled"
+                  helperText={
+                    touched.password && errors.password ? (
+                      <ErrorMessage
+                        name="password"
+                        className="validation-error"
+                      />
+                    ) : null
+                  }
                 />
-                {touched.password && errors.password ? (
-                  <ErrorMessage name="password" />
-                ) : null}
+
+                {errors.general ? <ErrorMessage name="password" /> : null}
 
                 <div className="form-controlers">
                   <FormControlLabel

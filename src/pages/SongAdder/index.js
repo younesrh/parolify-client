@@ -21,6 +21,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import firebase, { storage } from "../../config/firebase";
 import { v4 as uuid } from "uuid";
+import vSchema from "./validation";
 
 const SongAdder = () => {
   const history = useHistory();
@@ -39,8 +40,8 @@ const SongAdder = () => {
         </Typography>
         <div className="form">
           <Formik
-            // validationSchema={vSchema}
-            validateOnMount={true}
+            validationSchema={vSchema}
+            // validateOnMount={true}
             initialValues={{
               artist_name: "",
               song_name: "",
@@ -57,6 +58,7 @@ const SongAdder = () => {
                 try {
                   // Upload cover
                   if (!values.cover_file || !values.video_file) {
+                    setSubmitting(false);
                     return;
                   }
 
@@ -178,6 +180,7 @@ const SongAdder = () => {
                                         history.push("/songs-list");
                                       })
                                       .catch((err) => {
+                                        setFieldError("general", err);
                                         console.error(err);
                                         setSubmitting(false);
                                       });
@@ -222,10 +225,12 @@ const SongAdder = () => {
                   label="Song name"
                   error={touched.song_name && errors.song_name ? true : false}
                   variant="filled"
+                  helperText={
+                    touched.song_name && errors.song_name ? (
+                      <ErrorMessage name="song_name" />
+                    ) : null
+                  }
                 />
-                {touched.song_name && errors.song_name ? (
-                  <ErrorMessage name="song_name" />
-                ) : null}
 
                 <TextField
                   type="text"
@@ -239,10 +244,12 @@ const SongAdder = () => {
                     touched.artist_name && errors.artist_name ? true : false
                   }
                   variant="filled"
+                  helperText={
+                    touched.artist_name && errors.artist_name ? (
+                      <ErrorMessage name="artist_name" />
+                    ) : null
+                  }
                 />
-                {touched.artist_name && errors.artist_name ? (
-                  <ErrorMessage name="artist_name" />
-                ) : null}
 
                 <TextField
                   type="text"
@@ -256,10 +263,12 @@ const SongAdder = () => {
                   variant="filled"
                   multiline
                   rows={6}
+                  helperText={
+                    touched.lyrics && errors.lyrics ? (
+                      <ErrorMessage name="lyrics" />
+                    ) : null
+                  }
                 />
-                {touched.lyrics && errors.lyrics ? (
-                  <ErrorMessage name="lyrics" />
-                ) : null}
 
                 <input
                   accept="image/*"
@@ -294,6 +303,7 @@ const SongAdder = () => {
                     setFieldValue("video_file", event.currentTarget.files[0]);
                   }}
                 />
+
                 <label htmlFor="contained-button-video">
                   <Button
                     color="primary"
@@ -305,8 +315,8 @@ const SongAdder = () => {
                   </Button>
                 </label>
 
-                {touched.video_url && errors.video_url ? (
-                  <ErrorMessage name="video_url" />
+                {touched.general && errors.general ? (
+                  <ErrorMessage name="general" />
                 ) : null}
 
                 <div className="form-controlers">
