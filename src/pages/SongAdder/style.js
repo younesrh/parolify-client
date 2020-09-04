@@ -11,8 +11,12 @@ const SongAdder = styled.div`
     .form-controlers {
       width: 100%;
       display: flex;
-      align-items: space-between;
+      align-items: center;
       justify-content: space-between;
+      .upload-progress {
+        display: flex;
+        align-items: center;
+      }
     }
   }
   .hero-title {

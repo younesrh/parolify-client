@@ -80,10 +80,7 @@ const SongDetailed = () => {
       {selectedSong ? (
         <Styled.SongDetailed className="page">
           <div className="song-cover">
-            <img
-              src={`${process.env.REACT_APP_SERVER_URL}/${selectedSong.cover_image}`}
-              alt="Cover"
-            />
+            <img src={`${selectedSong.cover_image}`} alt="Cover" />
           </div>
           <Container>
             <div className="ratings">
@@ -109,16 +106,14 @@ const SongDetailed = () => {
             </Typography>
             <div className="video">
               <Player>
-                <source
-                  src={`${process.env.REACT_APP_SERVER_URL}/${selectedSong.video_url}`}
-                />
+                <source src={`${selectedSong.video_url}`} />
               </Player>
             </div>
             <div className="download">
               <Button
                 variant="contained"
                 color="secondary"
-                href={`${process.env.REACT_APP_SERVER_URL}/${selectedSong.video_url}`}
+                href={`${selectedSong.video_url}`}
                 download
                 target="_blank"
                 endIcon={<DownloadIconSvg style={{ fill: "white" }} />}

@@ -50,10 +50,7 @@ const SongItem = ({
         </div>
       )}
       <div className="image">
-        <img
-          src={`${process.env.REACT_APP_SERVER_URL}/${coverImage}`}
-          alt="Cover"
-        />
+        <img src={`${coverImage}`} alt="Cover" />
       </div>
       <div className="info">
         <div className="header">

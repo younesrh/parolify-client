@@ -19,11 +19,15 @@ import { ReactComponent as CoverIconSvg } from "../../assets/icons/bx-image-add.
 import { ReactComponent as VideoIconSvg } from "../../assets/icons/bx-video-plus.svg";
 import { useState } from "react";
 import { useEffect } from "react";
+import firebase, { storage } from "../../config/firebase";
+import { v4 as uuid } from "uuid";
 
 const SongAdder = () => {
   const history = useHistory();
   const { token } = useContext(AuthContext);
   const { songs, setSongs } = useContext(DataContext);
+  const [imageProgress, setImageProgress] = useState(0);
+  const [videoProgress, setVideoProgress] = useState(0);
   // const [coverUrl, setCoverUrl] = useState(null);
   // const [videoUrl, setVideoUrl] = useState(null);
 
@@ -46,96 +50,150 @@ const SongAdder = () => {
               ratings_number: Math.floor(Math.random() * 10000),
               rating: 4.8,
             }}
-            onSubmit={async (values, { setSubmitting, setFieldError }) => {
-              setSubmitting(true);
+            onSubmit={(values, { setSubmitting, setFieldError }) => {
+              const submit = async () => {
+                setSubmitting(true);
 
-              let coverUrl = "";
-              let videoUrl = "";
-
-              try {
-                // Upload cover
-                const formData = new FormData();
-                formData.append("coverFile", values.cover_file);
-
-                await Axios.post(
-                  `${process.env.REACT_APP_SERVER_URL}/api/songs/cover/upload`,
-                  formData,
-                  {
-                    headers: {
-                      "Content-Type": "multipart/form-data",
-                    },
+                try {
+                  // Upload cover
+                  if (!values.cover_file || !values.video_file) {
+                    return;
                   }
-                )
-                  .then(async (response) => {
-                    coverUrl = (await "static/") + response.data.filename;
-                  })
-                  .then(async () => {
-                    // Upload video
-                    const formData2 = new FormData();
-                    formData2.append("videoFile", values.video_file);
 
-                    await Axios.post(
-                      `${process.env.REACT_APP_SERVER_URL}/api/songs/video/upload`,
-                      formData2,
-                      {
-                        headers: {
-                          "Content-Type": "multipart/form-data",
-                        },
-                      }
-                    )
-                      .then(async (response) => {
-                        videoUrl = (await "static/") + response.data.filename;
-                      })
-                      .then(async () => {
-                        await Axios.post(
-                          `${process.env.REACT_APP_SERVER_URL}/api/songs/add`,
-                          {
-                            artist_name: values.artist_name,
-                            song_name: values.song_name,
-                            lyrics: values.lyrics,
-                            cover_image: coverUrl,
-                            video_url: videoUrl,
-                            ratings_number: values.ratings_number,
-                            rating: values.rating,
-                          },
-                          {
-                            headers: {
-                              "auth-token": token,
-                            },
-                          }
-                        )
-                          .then((res) => {
-                            let parsedSong = {
-                              id: res.data._id,
-                              artistName: res.data.artist_name,
-                              coverImage: res.data.cover_image,
-                              videoUrl: res.data.video_url,
-                              songName: res.data.song_name,
-                              ratingsNumber: res.data.ratings_number,
-                              rating: res.data.rating,
-                              lyrics: res.data.lyrics,
-                            };
-                            setSongs([parsedSong, ...songs]);
-                            setSubmitting(false);
-                            history.push("/songs-list");
-                          })
-                          .catch((err) => {
-                            console.error(err);
-                            setSubmitting(false);
+                  return new Promise(function (resolve, reject) {
+                    let newSong = {};
+
+                    // Generate a unique name for the image
+                    let imageName = `cover-${uuid()}`;
+                    // Storage reference
+                    let uploadRef = storage.ref(`images/${imageName}`);
+                    // Uplaod file
+                    const uploadTask = uploadRef.put(values.cover_file);
+                    // Get the download link
+                    uploadTask.on(
+                      "state_changed",
+                      function (snapshot) {
+                        // Observe state change events such as progress, pause, and resume
+                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                        var progress =
+                          (snapshot.bytesTransferred / snapshot.totalBytes) *
+                          100;
+                        console.log("Upload is " + progress + "% done");
+                        setImageProgress(progress);
+                        switch (snapshot.state) {
+                          case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log("Upload is paused");
+                            break;
+                          case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log("Upload is running");
+                            break;
+                        }
+                      },
+                      function (error) {
+                        // Handle unsuccessful uploads
+                        reject(uploadTask);
+                      },
+                      async function () {
+                        // Handle successful uploads on complete
+                        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                        await uploadTask.snapshot.ref
+                          .getDownloadURL()
+                          .then(async function (downloadURL) {
+                            console.log("File available at", downloadURL);
+                            newSong.cover_image = downloadURL;
+
+                            // Generate a unique name for the video
+                            let videoName = `video-${uuid()}`;
+                            // Storage reference
+                            let uploadRef = storage.ref(`videos/${videoName}`);
+                            // Uplaod file
+                            const uploadTask = uploadRef.put(values.video_file);
+
+                            uploadTask.on(
+                              "state_changed",
+                              function (snapshot) {
+                                // Observe state change events such as progress, pause, and resume
+                                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                                var progress =
+                                  (snapshot.bytesTransferred /
+                                    snapshot.totalBytes) *
+                                  100;
+                                console.log("Upload is " + progress + "% done");
+                                setVideoProgress(progress);
+                                switch (snapshot.state) {
+                                  case firebase.storage.TaskState.PAUSED: // or 'paused'
+                                    console.log("Upload is paused");
+                                    break;
+                                  case firebase.storage.TaskState.RUNNING: // or 'running'
+                                    console.log("Upload is running");
+                                    break;
+                                }
+                              },
+                              function (error) {
+                                // Handle unsuccessful uploads
+                                setSubmitting(false);
+                              },
+                              async function () {
+                                // Handle successful uploads on complete
+                                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                                await uploadTask.snapshot.ref
+                                  .getDownloadURL()
+                                  .then(async function (downloadURL) {
+                                    console.log(
+                                      "File available at",
+                                      downloadURL
+                                    );
+                                    newSong.video_url = downloadURL;
+                                    await Axios.post(
+                                      `${process.env.REACT_APP_SERVER_URL}/api/songs/add`,
+                                      {
+                                        artist_name: values.artist_name,
+                                        song_name: values.song_name,
+                                        lyrics: values.lyrics,
+                                        ratings_number: values.ratings_number,
+                                        rating: values.rating,
+                                        ...newSong,
+                                      },
+                                      {
+                                        headers: {
+                                          "auth-token": token,
+                                        },
+                                      }
+                                    )
+                                      .then((res) => {
+                                        let parsedSong = {
+                                          id: res.data._id,
+                                          artistName: res.data.artist_name,
+                                          coverImage: res.data.cover_image,
+                                          videoUrl: res.data.video_url,
+                                          songName: res.data.song_name,
+                                          ratingsNumber:
+                                            res.data.ratings_number,
+                                          rating: res.data.rating,
+                                          lyrics: res.data.lyrics,
+                                        };
+                                        setSongs([parsedSong, ...songs]);
+                                        resolve(uploadTask);
+                                        setSubmitting(false);
+                                        history.push("/songs-list");
+                                      })
+                                      .catch((err) => {
+                                        console.error(err);
+                                        setSubmitting(false);
+                                      });
+                                  });
+                              }
+                            );
                           });
-                      })
-                      .catch((err) => {
-                        setSubmitting(false);
-                        console.error(err);
-                      });
-                  })
-                  .catch((err) => {
-                    setSubmitting(false);
-                    console.error(err);
+                      }
+                    );
                   });
-              } catch (error) {
-                console.error(error);
-              }
+                } catch (error) {
+                  console.error(error);
+                }
+                setSubmitting(false);
+              };
+              submit();
             }}
           >
             {({
@@ -252,6 +310,12 @@ const SongAdder = () => {
                 ) : null}
 
                 <div className="form-controlers">
+                  <div className="upload-progress">
+                    <Typography variant="body1">
+                      {videoProgress > 0 && `${videoProgress.toFixed(0)}%`}
+                    </Typography>
+                  </div>
+
                   <Button
                     type="submit"
                     variant="contained"
@@ -263,6 +327,8 @@ const SongAdder = () => {
                       <CircularProgress
                         style={{ marginInlineStart: "16px" }}
                         size={20}
+                        variant="static"
+                        value={videoProgress}
                       />
                     )}
                   </Button>
